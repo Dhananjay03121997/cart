@@ -1,0 +1,17 @@
+{
+   
+   "product": [
+        {
+            "name" : "Bread",
+            "price" : 1.10
+        },
+        {
+            "name" : "Milk",
+            "price" : 0.50
+        },
+        {
+            "name" : "Cheese",
+            "price" : 0.90
+        }
+    ]
+}
