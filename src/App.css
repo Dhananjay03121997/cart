@@ -1,13 +1,16 @@
 *{
-  margin: auto;
-  padding: auto;
+  /* margin: auto; */
+  /* padding: auto; */
+  
 }
 body{
   background: gray;
+  
 }
 .block-1{
+  padding-top: 15px;
   display: flex;
-  height: 100vh;  
+  min-height: 100vh;  
   /* justify-content: center; */
   background: dimgray;
 }

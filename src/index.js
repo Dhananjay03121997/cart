@@ -1,28 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Product, Cart } from './App';
+import { Product, Cart, Example } from './App';
 import 'bootstrap/dist/css/bootstrap.css'
 
 
 ReactDOM.render(
   <React.StrictMode>
     <div className= "block-1">
-      <div className= "card">
-        <div className = "card-body">
           <Product />
-        </div>
-      </div>
-      <div>
-      <div className="cart card">
-        <table cellPadding="10">
-          <tbody>
-            <tr><td>Products</td></tr>
-            <Cart />
-          </tbody>
-        </table>
-      </div>
-      </div>
     </div>
   </React.StrictMode>,
   document.getElementById('root')
