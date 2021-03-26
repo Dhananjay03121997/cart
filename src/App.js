@@ -9,13 +9,13 @@ function Product() {
   // const [cart, setCart] = useState([]);
   const addToCart = (product) => {
     arr.push(product);
-    setCount(arr);
-    
+    setCount(current=>[...current, arr]);
+    // console.log(count);
   }
   return (
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-5 mb-3">
                 <div class="card">
                     <div class="card-body">
                     <table className="table" cellPadding="10" cellSpacing="10">
@@ -37,14 +37,27 @@ function Product() {
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-7 mb-3">
                 <div class="card">
                     <div class="card-body">
                     <table className="table" cellPadding="10" cellSpacing="10">
                       <thead>
-                        <tr><th colSpan="2">Basket <button className="btn btn-outline-primary disabled">{count.length}</button> </th></tr>
+                        <tr><th colSpan="3">Basket <button className="btn btn-outline-primary disabled">{count.length}</button> </th></tr>
+                        <tr>
+                          <th className="col-4">Name</th>
+                          <th className="col-3">Price</th>
+                          <th className="col-5">Operation</th>
+                        </tr>
                           {count.map((item)=>{
-                            return <tr><td>{item.name}</td><td>{item.price}</td><td></td><td><button className="btn-outline-secondary btn-xs" >-</button><label value="2" className="w-20"></label><button className="btn-xs btn-outline-secondary">+</button></td></tr>
+                            return <tr>
+                              <td>{item[0].name}</td>
+                              <td >${item[0].price}</td>
+                              <td>
+                                <button className="btn-outline-primary btn-xs" >-</button>
+                                <input type="text" style={{width:"20px"}} />
+                                <button className="btn-xs btn-outline-secondary">+</button>
+                                </td>
+                                </tr>
                             
                           })}
                       </thead>
