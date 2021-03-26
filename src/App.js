@@ -8,7 +8,9 @@ function Product() {
   const [count, setCount] = useState([]);
   // const [cart, setCart] = useState([]);
   const addToCart = (product) => {
-    setCount(current => [...current, product.name]);
+    arr.push(product);
+    setCount(arr);
+    
   }
   return (
     <div class="container">
@@ -40,9 +42,9 @@ function Product() {
                     <div class="card-body">
                     <table className="table" cellPadding="10" cellSpacing="10">
                       <thead>
-                        <tr><th colSpan="2">Basket <button className="btn btn-outline-primary">{count.length}</button> </th></tr>
+                        <tr><th colSpan="2">Basket <button className="btn btn-outline-primary disabled">{count.length}</button> </th></tr>
                           {count.map((item)=>{
-                            return <tr><td>{item}</td><td>Price</td><td></td><td><button className="btn-outline-secondary btn-xs" >-</button><label value="2" className="w-20"></label><button className="btn-xs btn-outline-secondary">+</button></td></tr>
+                            return <tr><td>{item.name}</td><td>{item.price}</td><td></td><td><button className="btn-outline-secondary btn-xs" >-</button><label value="2" className="w-20"></label><button className="btn-xs btn-outline-secondary">+</button></td></tr>
                             
                           })}
                       </thead>
