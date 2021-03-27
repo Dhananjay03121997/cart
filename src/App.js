@@ -35,14 +35,15 @@ function Product() {
 
 
     function onClick(e){
-      let i = e.target.attributes[1].value
+      let i = e.target.value
       let item = cart[i];
-    if(item[0].quantity > item[0].requirement){
+    if(e.target.name == "add"){
       cart[i][0].requirement = cart[i][0].requirement + 1;
-    }
-    if(item[0].quantity == item[0].requirement){
-      e.target.disabled = true
-    }
+    
+  }
+  if(e.target.name == "less"){
+      cart[i][0].requirement = cart[i][0].requirement - 1;
+  }
     setQuantity(current =>[...current , cart[i][0].requirement]);
     }
   return (
@@ -101,9 +102,9 @@ function Product() {
                               <td >{item[0].name}</td>
                               <td >${item[0].price}</td>
                               <td className="d-inline">
-                                <button className="btn-outline-primary btn-xs" >-</button>
+                                <button name="less" className="btn-outline-primary btn-xs" value={index} onClick={onClick} disabled={item[0].requirement == 1}>-</button>
                                 <input type="text" style={{width:"30px"}} value={item[0].requirement}/>
-                                <button className="btn-xs btn-outline-secondary" value={index} onClick={onClick}>+</button>
+                                <button name="add" className="btn-xs btn-outline-secondary add" value={index} onClick={onClick} disabled={item[0].requirement == item[0].quantity}>+</button>
                                 </td>
                                 </tr>
                           })
