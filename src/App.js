@@ -1,19 +1,21 @@
 import './App.css';
 import React, { useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import products from './data/data.json';
 import axios from 'axios'
 
+let data = products.product;
 function Product() {
-    const [data, setUser] = useState([]);
+    // const [data, setProductData] = useState([]);
 
-    useEffect(() => {
-      loadProducts();
-    }, []);
+    // useEffect(() => {
+    //   loadProducts();
+    // }, []);
   
-    const loadProducts = async () => {
-      const result = await axios.get("http://localhost:3003/product");
-      setUser(result.data);
-    };    
+    // const loadProducts = async () => {
+    //   const result = await axios.get("http://localhost:3003/product");
+    //   setProductData(result.data);
+    // };      NOT WORKING AFTER PUSHED ON HEROKU APP
 
   let arr = [];
   const [cart, setCart] = useState([]);

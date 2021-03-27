@@ -14,7 +14,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"json-server --watch data.json --port 3003\"",
+    "start": "react-scripts start",
     "json-server": "json-server --watch data.json --port 3003",
     "start:Dev": "concurrently \"npm start\" \"json-server --watch data.json --port 3003\"",
     "build": "react-scripts build",
