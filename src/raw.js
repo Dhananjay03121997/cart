@@ -13,47 +13,44 @@ function Product() {
     const loadProducts = async () => {
       const result = await axios.get("http://localhost:3003/product");
       setUser(result.data);
-    };    
+    };
+  
+    // const deleteUser = async id => {
+    //   await axios.delete(`http://localhost:3003/users/${id}`);
+    //   loadProducts();
+    // };
+    
+    
 
-  let arr = [];
-  const [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState([]);
-  function handleClick(e) {
-    e.target.disabled = true
-    let i = e.target.attributes[1].value;
+  let arr = [], match;
+  const [count, setCount] = useState([]);
+//Add To Cart
+  const addToCart = (product1, index) => {
+     match = product1.id;
     let product={
-      name:data[i].name,
-      price: data[i].price,
-      quantity: data[i].quantity,
-      requirement: 1
+      ...product1,
+      index: index
     }
     arr.push(product);
-    setCart(current=>[...current, arr]);
+    setCount(current=>[...current, arr]);
   }
-
-
-  function itemx(e){
-    let item = cart[e];
-    if(item[0].quantity > item[0].requirement){
-      cart[e][0].requirement = cart[e][0].requirement + 1;
+  // const [product, setProduct] = useState([]);
+  const getDataById = async (id) =>{
+    const result = await axios.get(`http://localhost:3003/product/{id}`);
+    //   setUser(result.data);
+    // arr.push(id)
+    // setProduct(current=>[...current, arr])
+    console.log(result);
+    const  state ={
+      disabled: false
     }
-    if(item[0].quantity = item[0].requirement){
-      // e.target.disabled = true
+
+    this.handlechange = (e)=>{
+      this.setState({
+        disabled: true
+      })
     }
-    setQuantity(current =>[...current , cart[e][0].requirement]);
   }
-
-    function onClick(e){
-      let i = e.target.attributes[1].value
-      let item = cart[i];
-    if(item[0].quantity > item[0].requirement){
-      cart[i][0].requirement = cart[i][0].requirement + 1;
-    }
-    if(item[0].quantity == item[0].requirement){
-      e.target.disabled = true
-    }
-    setQuantity(current =>[...current , cart[i][0].requirement]);
-    }
   return (
     <div className="container">
       <div className="Crud"></div>
@@ -65,7 +62,7 @@ function Product() {
                       <thead>
                         <tr><th colSpan="3">Products</th></tr>
                         <tr>
-                          <th scope="col-lg-4" className = "w-100">Name</th>
+                          <th scope="col" className = "w-100">Name</th>
                           <th scope="col">Price</th>
                           <th scope="col">Operation</th>
                         </tr>
@@ -77,7 +74,8 @@ function Product() {
                           <td>{product.name}</td>
                           <td>${product.price}</td>
                           <td>
-                            <button className="btn btn-primary" value={index} key={index} onClick={handleClick} 
+                            <button className="btn btn-primary" value={index} onClick={()=>addToCart(product, index)} 
+                            disabled={ match == product.id}
                               >
                               Add
                             </button></td>
@@ -97,22 +95,22 @@ function Product() {
                         <tr>
                           <th colSpan="3">Basket 
                           <label className="btn-xs btn-outline-primary disabled ml-2 mr-2 border p-2">
-                            {cart.length}
+                            {count.length}
                           </label>
                           </th></tr>
                         <tr>
-                          <th >Name</th>
+                          <th className="col-lg-4">Name</th>
                           <th >Price</th>
-                          <th >Operation</th>
+                          <th className="col-lg-4">Operation</th>
                         </tr>
-                          {cart.map((item, index)=>{
+                          {count.map((item, index)=>{
                             return <tr key={index}>
                               <td >{item[0].name}</td>
                               <td >${item[0].price}</td>
-                              <td className="d-inline">
-                                <button className="btn-outline-primary btn-xs" >-</button>
-                                <input type="text" style={{width:"30px"}} value={item[0].requirement}/>
-                                <button className="btn-xs btn-outline-secondary" value={index} onClick={onClick}>+</button>
+                              <td>
+                                <button className="btn-outline-primary btn-xs" onClick={()=>getDataById(item[0].id)}>-</button>
+                                <input type="text" style={{width:"30px"}}/>
+                                <button className="btn-xs btn-outline-secondary">+</button>
                                 </td>
                                 </tr>
                           })
@@ -128,7 +126,12 @@ function Product() {
     </div>
   );
 }
+function Cart(s){
+  return(
+    <tr><td>cart</td></tr>
+  )
+}
 
 // function 
 
-export {Product };
+export {Product, Cart, Example };

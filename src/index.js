@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Product, Cart, Example } from './App';
+import { Product } from './App';
 import 'bootstrap/dist/css/bootstrap.css'
 
 
