@@ -32,17 +32,6 @@ function Product() {
   }
 
 
-  function itemx(e){
-    let item = cart[e];
-    if(item[0].quantity > item[0].requirement){
-      cart[e][0].requirement = cart[e][0].requirement + 1;
-    }
-    if(item[0].quantity = item[0].requirement){
-      // e.target.disabled = true
-    }
-    setQuantity(current =>[...current , cart[e][0].requirement]);
-  }
-
     function onClick(e){
       let i = e.target.attributes[1].value
       let item = cart[i];
