@@ -9,6 +9,8 @@ function Product() {
   let arr = [], totalVal = 0;
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+ 
+  //ADDING ITEM TO BASKET/CART
   function handleClick(e) {
     e.target.disabled = true
     let i = e.target.attributes[1].value;
@@ -108,21 +110,23 @@ useEffect(() => {
                       </thead>
                       <tbody>
                           {cart.map((item, index)=>{
-                            return <tr key={index}>
+                            return<tr key={index}>
                               <td >{item[0].name}</td>
                               <td >${item[0].price}</td>
                               <tr>
                               <td className = "col-lg-4 ">
                                 <button name="less" className="btn-outline-primary btn-xs" value={index} onClick={onClick} disabled={item[0].requirement == 1}>-</button>
                                 <input type="text" style={{width:"30px"}} value={item[0].requirement}/>
-                                <button name="add" className="btn-xs btn-outline-secondary add" value={index} onClick={onClick} disabled={item[0].requirement == item[0].quantity}>+</button>
+                                <button name="add" className="btn-xs btn-outline-secondary" value={index} onClick={onClick} disabled={item[0].requirement == item[0].quantity}>+</button>
                                 </td>
                                 </tr>
                                 <tr className="text-right">item price {item[0].price} * {item[0].requirement} = {item[0].item_total.toFixed(2)}</tr>
+                                <tr className="font-weight-bolder"><td>Item Cost ${item[0].item_total.toFixed(2)}</td></tr>
                                 </tr>
+                                
                           })
                           }
-                           <tr className="font-weight-bolder"><td></td><td >Total</td><td>{total == 0 ? total : total.toFixed(2)}</td></tr>
+                           <tr className="font-weight-bolder"><td></td><td >Total</td><td>${total == 0 ? total : total.toFixed(2)}</td></tr>
                           
                             
                       </tbody>
