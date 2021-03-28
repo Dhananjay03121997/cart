@@ -24,10 +24,12 @@ function Product() {
     }
     if (data[i].name == "cheese" || data[i].name == "Cheese") {
       product.requirement = 2;
-      product.item_total= product.price * 2;
+      product.item_total= product.price * 1;
+      product.savings = product.price * 1;
     }
     arr.push(product);
     setCart(current=>[...current, arr]);
+    console.log(cart);
 }
 
 useEffect(() => {
@@ -47,7 +49,9 @@ useEffect(() => {
     if(e.target.name == "add"){
       cart[i][0].requirement = cart[i][0].requirement + add;
       cart[i][0].item_total = cart[i][0].price * cart[i][0].requirement;
+      cart[i][0].savings =  cart[i][0].price * cart[i][0].requirement;
   }
+  console.log(cart[i][0])
   if(e.target.name == "less"){
       cart[i][0].requirement = cart[i][0].requirement - add;
       cart[i][0].item_total = cart[i][0].requirement * cart[i][0].price;
@@ -115,14 +119,15 @@ useEffect(() => {
                               <td >{item[0].name}</td>
                               <td >${item[0].price}</td>
                               <tr>
-                              <td className = "col-lg-4 ">
+                              <td className = "col-lg-4 text-right">
                                 <button name="less" className="btn-outline-primary btn-xs" value={index} onClick={onClick} disabled={item[0].requirement == 1}>-</button>
                                 <input type="text" style={{width:"30px"}} value={item[0].requirement}/>
                                 <button name="add" className="btn-xs btn-outline-secondary" value={index} onClick={onClick} disabled={item[0].requirement == item[0].quantity}>+</button>
                                 </td>
                                 </tr>
                                 <tr className="text-right">item price {item[0].price} * {item[0].requirement} = {item[0].item_total.toFixed(2)}</tr>
-                                <tr className="font-weight-bolder"><td>Item Cost ${item[0].item_total.toFixed(2)}</td></tr>
+                                  {item[0].savings > 0 ? <tr className="font-weight-bolder text-right" style={{color:"red"}}>Savings {item[0].savings}</tr> : <tr></tr>}
+                                <tr className="font-weight-bolder text-right"><td>Item Cost ${item[0].item_total.toFixed(2)}</td></tr>
                                 </tr>
                                 
                           })
