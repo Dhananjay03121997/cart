@@ -25,7 +25,7 @@ function Product() {
     if (data[i].name == "cheese" || data[i].name == "Cheese") {
       product.requirement = 2;
       product.item_total= product.price * 1;
-      product.savings = product.price * 1;
+      // product.savings = product.price * 1;
     }
     arr.push(product);
     setCart(current=>[...current, arr]);
@@ -49,7 +49,7 @@ useEffect(() => {
     if(e.target.name == "add"){
       cart[i][0].requirement = cart[i][0].requirement + add;
       cart[i][0].item_total = cart[i][0].price * cart[i][0].requirement;
-      cart[i][0].savings =  cart[i][0].price * cart[i][0].requirement;
+      // cart[i][0].savings =  cart[i][0].price * cart[i][0].requirement;
   }
   console.log(cart[i][0])
   if(e.target.name == "less"){
@@ -126,7 +126,7 @@ useEffect(() => {
                                 </td>
                                 </tr>
                                 <tr className="text-right">item price {item[0].price} * {item[0].requirement} = {item[0].item_total.toFixed(2)}</tr>
-                                  {item[0].savings > 0 ? <tr className="font-weight-bolder text-right" style={{color:"red"}}>Savings {item[0].savings}</tr> : <tr></tr>}
+                                  {/* {item[0].savings > 0 ? <tr className="font-weight-bolder text-right" style={{color:"red"}}>Savings {item[0].savings}</tr> : <tr></tr>} */}
                                 <tr className="font-weight-bolder text-right"><td>Item Cost ${item[0].item_total.toFixed(2)}</td></tr>
                                 </tr>
                                 
