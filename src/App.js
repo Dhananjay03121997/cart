@@ -13,6 +13,7 @@ function Product() {
   //ADDING ITEM TO BASKET/CART
   function handleClick(e) {
     e.target.disabled = true
+    e.target.className ="btn btn-secondary";
     let i = e.target.attributes[1].value;
     let product={
       name:data[i].name,
